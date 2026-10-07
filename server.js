@@ -392,6 +392,22 @@ app.delete('/api/categories/:name', async (req, res) => {
   res.json({ success: true, message: 'Kategori dihapus' });
 });
 
+// Serve static uploaded files
+app.use('/uploads', express.static(uploadsDir));
+
+// Serve Frontend React Static Production Build
+const frontendDistDir = path.join(__dirname, '..', 'frontend', 'dist');
+if (fs.existsSync(frontendDistDir)) {
+  app.use(express.static(frontendDistDir));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api') || req.path.startsWith('/uploads')) {
+      return next();
+    }
+    res.sendFile(path.join(frontendDistDir, 'index.html'));
+  });
+}
+
 app.listen(PORT, () => {
   console.log(`🚀 Server Express Sosis Heaven Sentosa berjalan di http://localhost:${PORT}`);
 });
+
