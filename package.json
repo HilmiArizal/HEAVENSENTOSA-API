@@ -1,0 +1,16 @@
+{
+  "name": "sosis-heaven-sentosa-backend",
+  "version": "1.0.0",
+  "description": "Backend REST API for Sosis Heaven Sentosa Catalog",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^18.0.5",
+    "express": "^4.19.2",
+    "mongoose": "^9.10.4",
+    "multer": "^2.4.0"
+  }
+}
